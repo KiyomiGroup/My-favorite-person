@@ -45,8 +45,12 @@ function reducer(state: State, action: Action): State {
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initial)
 
-  useEffect(() => setMuted(state.muted), [state.muted])
-  useEffect(() => window.scrollTo({ top: 0 }), [state.stage])
+  useEffect(() => {
+    setMuted(state.muted)
+  }, [state.muted])
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [state.stage])
   // Stage 3 is a dark game-show set; theme the whole page (incl. overscroll area).
   const finaleDark = state.stage === 6 && state.finale === 'quiz'
   useEffect(() => {

@@ -69,7 +69,11 @@ export function Stage1({ onNext }: { onNext: () => void }) {
   }, [move])
 
   // Make sure a pending timer/listener never outlives the stage.
-  useEffect(() => () => void (lastDodge.current = 0), [])
+  useEffect(() => {
+    return () => {
+      lastDodge.current = 0
+    }
+  }, [])
 
   const handleYes = () => {
     if (saidYes) return

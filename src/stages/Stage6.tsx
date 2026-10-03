@@ -13,8 +13,14 @@ export function Stage6({ finale, setFinale, onRestart }: { finale: Finale; setFi
   const [opening, setOpening] = useState(false)
   const timer = useRef<number>()
 
-  useEffect(() => () => window.clearTimeout(timer.current), [])
-  useEffect(() => window.scrollTo({ top: 0 }), [finale])
+  useEffect(() => {
+    return () => {
+      window.clearTimeout(timer.current)
+    }
+  }, [])
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [finale])
 
   const pick = (id: string) => {
     const opt = t.options.find((o) => o.id === id)!
